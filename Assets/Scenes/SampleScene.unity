@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 252871768}
   - component: {fileID: 252871769}
-  - component: {fileID: 252871770}
   m_Layer: 0
   m_Name: SwingPoint
   m_TagString: Untagged
@@ -164,7 +163,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 252871767}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -177,18 +176,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &252871770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 252871767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eeb7082fa1fec0a4ab88315184c0a7ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +263,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -508,8 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a4e56e66658d647ac5ca5858ef37d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FlyForce: 1
-  BirdMotor: {fileID: 2073117435}
+  bird: {fileID: 2073117431}
 --- !u!1 &1471301427
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,11 +537,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2073117433}
   - component: {fileID: 2073117432}
-  - component: {fileID: 2073117436}
-  - component: {fileID: 2073117435}
   - component: {fileID: 2073117434}
+  - component: {fileID: 2073117435}
+  - component: {fileID: 2073117436}
   - component: {fileID: 2073117437}
-  - component: {fileID: 2073117438}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -622,15 +607,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2073117431}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -5.9, y: -1.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1471301428}
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!114 &2073117434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,6 +628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b1a11dbb81427f9134fad9e88d51cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _movementSpeed: 50
 --- !u!114 &2073117435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -652,7 +638,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2073117431}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c696bbd088554f3f8709c66b107cec29, type: 3}
+  m_Script: {fileID: 11500000, guid: eeb7082fa1fec0a4ab88315184c0a7ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!50 &2073117436
@@ -692,19 +678,7 @@ SpringJoint2D:
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 1
-  m_Distance: 0.005
+  m_AutoConfigureDistance: 0
+  m_Distance: 6.1540637
   m_DampingRatio: 0
-  m_Frequency: 1
---- !u!114 &2073117438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2073117431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eeb7082fa1fec0a4ab88315184c0a7ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Frequency: 2.25

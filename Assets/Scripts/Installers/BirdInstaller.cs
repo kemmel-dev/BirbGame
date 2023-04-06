@@ -1,5 +1,4 @@
 using Birds;
-using Helpers;
 using Plugins.Unify.Core.Installers;
 using UnityEngine;
 
@@ -8,16 +7,15 @@ namespace Installers
     public class BirdInstaller : UnifyMonoInstaller
     {
 
-        public float FlyForce;
-        public BirdMotor BirdMotor;
+        public GameObject bird;
         
         public override void RegisterDependencies()
         {
-            DefineDependency<Bird>().FromInstance(new Bird(FlyForce)).Register();
-            DefineDependency<BirdMotor>().FromInstance(BirdMotor).Register();
-            DefineDependency<Rigidbody2D>().FromComponentOn(BirdMotor).Register();
-            DefineDependency<SpringJoint2D>().FromComponentOnGameObject(BirdMotor.gameObject).Register();
-            DefineDependency<SpringOrientationHelper>().FromComponentOnGameObject(BirdMotor.gameObject).Register();
+            DefineDependency<Camera>().FromInstance(Camera.main).Register();
+            DefineDependency<Rigidbody2D>().FromComponentOnGameObject(bird).Register();
+            DefineDependency<BirdMotor>().FromComponentOnGameObject(bird).Register();
+            DefineDependency<SpringJoint2D>().FromComponentOnGameObject(bird).Register();
+            DefineDependency<SpringController>().FromComponentOnGameObject(bird).Register();
         }
     }
 }

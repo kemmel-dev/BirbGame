@@ -1,31 +1,37 @@
-using Plugins.Unify.Core;
+﻿using Plugins.Unify.Core;
 using Plugins.Unify.Core.Attributes;
 using UnityEngine;
 
 namespace Birds
 {
-    [RequireComponent(typeof(Rigidbody2D))]
     public class BirdMotor : UnifyBehaviour
     {
-        private Bird _bird;
         private Rigidbody2D _rb;
-        private BirdController _springController;
+        private SpringController _springController;
         
-        [Inject]
-        public void Inject(Bird bird, Rigidbody2D attachedRb)
-        {
-            _rb = attachedRb;
-            _bird = bird;
-        }
+        [SerializeField] private float _movementSpeed;
+        
+        private bool _springIsAttached;
 
-        public void Fly()
+        [Inject]
+        public void Inject(Rigidbody2D birdBody, SpringController springController)
         {
-            _rb.AddForce(transform.right * _bird.FlyForce);
+            _rb = birdBody;
+            _springController = springController;
         }
 
         private void FixedUpdate()
         {
-            Fly();
+            if (_springController.SpringIsAttached)
+            {
+                _rb.transform.up = _springController.AttachOrientation;
+            }
+            MoveForward();
+        }
+
+        private void MoveForward()
+        {
+            _rb.AddForce(_rb.transform.up * (_movementSpeed * Time.deltaTime));
         }
     }
 }
