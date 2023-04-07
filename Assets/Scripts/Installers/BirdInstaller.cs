@@ -9,7 +9,7 @@ namespace Installers
     {
 
         public BirdZoomTrigger Bird;
-        public Camera mainCamera;
+        public Camera MainCamera;
         public Transform SwingPoint;
         public Transform BirdCameraTarget;
         
@@ -22,8 +22,8 @@ namespace Installers
             DefineDependency<SpringController>().FromComponentOn(Bird).Register();
             DefineDependency<Transform>().FromInstance(BirdCameraTarget).WithId(UnifyID.BirdCameraTarget).Register();
             DefineDependency<Transform>().FromInstance(SwingPoint).WithId(UnifyID.SwingPoint).Register();
-            DefineDependency<CameraFollow>().FromComponentOn(mainCamera).Register();
-            DefineDependency<CameraZoom>().FromComponentOn(mainCamera).Register();
+            DefineDependency<CameraFollow>().FromComponentOn(MainCamera).Register();
+            DefineDependency<CameraZoom>().FromComponentOn(MainCamera).Register();
         }
     }
 }
