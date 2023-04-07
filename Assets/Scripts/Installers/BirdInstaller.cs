@@ -1,6 +1,7 @@
 using System;
 using Birds;
 using Plugins.Unify.Core.Installers;
+using Renderers;
 using UnityEngine;
 
 namespace Installers
@@ -12,6 +13,7 @@ namespace Installers
         public Camera MainCamera;
         public Transform SwingPoint;
         public Transform BirdCameraTarget;
+        public SpringLineRenderer SpringLineRenderer;
         
         public override void RegisterDependencies()
         {
@@ -24,6 +26,7 @@ namespace Installers
             DefineDependency<Transform>().FromInstance(SwingPoint).WithId(UnifyID.SwingPoint).Register();
             DefineDependency<CameraFollow>().FromComponentOn(MainCamera).Register();
             DefineDependency<CameraZoom>().FromComponentOn(MainCamera).Register();
+            DefineDependency<LineRenderer>().FromComponentOn(SpringLineRenderer).Register();
         }
     }
 }
