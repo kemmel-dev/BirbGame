@@ -1,5 +1,3 @@
-using System;
-using System.Timers;
 using Plugins.Unify.Core;
 using Plugins.Unify.Core.Attributes;
 using UnityEngine;
@@ -12,7 +10,9 @@ public class CameraFollow : UnifyBehaviour
 
     [SerializeField]
     [Range(0,1)]
-    private float Speed;
+    private float SmoothSpeed;
+    
+    private Vector3 _velocity = Vector3.zero;
 
     [Inject]
     public void Inject(Camera mainCamera)
@@ -28,15 +28,11 @@ public class CameraFollow : UnifyBehaviour
     private void Update()
     {
         var cameraTransform = _camera.transform;
-        
-        var currentPos = cameraTransform.position;
-        
         var targetPosition = _target.position;
         var desiredPosition = new Vector3(targetPosition.x, targetPosition.y, -10);
 
-        var newPos = Vector3.Slerp(currentPos, desiredPosition, Speed);
+        var newPos = Vector3.SmoothDamp(cameraTransform.position, desiredPosition, ref _velocity, SmoothSpeed);
         newPos.z = -10;
         cameraTransform.position = newPos;
-        
     }
 }
