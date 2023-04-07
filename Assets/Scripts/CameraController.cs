@@ -11,7 +11,7 @@ public class CameraController : UnifyBehaviour
     [Inject]
     public void Inject(
             CameraFollow cameraFollow, 
-            [InjectWithId(UnifyID.BirdTransform)] Transform bird,
+            [InjectWithId(UnifyID.BirdCameraTarget)] Transform bird,
             [InjectWithId(UnifyID.SwingPoint)] Transform swingPoint
         )
     {

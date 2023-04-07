@@ -8,9 +8,10 @@ namespace Installers
     public class BirdInstaller : UnifyMonoInstaller
     {
 
-        public BirdMono Bird;
-        public CameraFollow CameraFollow;
+        public BirdZoomTrigger Bird;
+        public Camera mainCamera;
         public Transform SwingPoint;
+        public Transform BirdCameraTarget;
         
         public override void RegisterDependencies()
         {
@@ -19,9 +20,10 @@ namespace Installers
             DefineDependency<BirdMotor>().FromComponentOn(Bird).Register();
             DefineDependency<SpringJoint2D>().FromComponentOn(Bird).Register();
             DefineDependency<SpringController>().FromComponentOn(Bird).Register();
-            DefineDependency<Transform>().FromInstance(Bird.transform).WithId(UnifyID.BirdTransform).Register();
+            DefineDependency<Transform>().FromInstance(BirdCameraTarget).WithId(UnifyID.BirdCameraTarget).Register();
             DefineDependency<Transform>().FromInstance(SwingPoint).WithId(UnifyID.SwingPoint).Register();
-            DefineDependency<CameraFollow>().FromInstance(CameraFollow).Register();
+            DefineDependency<CameraFollow>().FromComponentOn(mainCamera).Register();
+            DefineDependency<CameraZoom>().FromComponentOn(mainCamera).Register();
         }
     }
 }

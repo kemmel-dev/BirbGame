@@ -11,17 +11,13 @@ public class CameraFollow : UnifyBehaviour
     private Transform _target;
 
     [SerializeField]
+    [Range(0,1)]
     private float Speed;
 
     [Inject]
     public void Inject(Camera mainCamera)
     {
         _camera = mainCamera;
-    }
-
-    private void Start()
-    {
-        _target = new GameObject("follow Target").transform;
     }
 
     public void SetTarget(Transform target)
@@ -36,9 +32,9 @@ public class CameraFollow : UnifyBehaviour
         var currentPos = cameraTransform.position;
         
         var targetPosition = _target.position;
-        var desiredPosition = new Vector3(targetPosition.x, targetPosition.y, 0);
+        var desiredPosition = new Vector3(targetPosition.x, targetPosition.y, -10);
 
-        var newPos = Vector3.Slerp(currentPos, desiredPosition, Speed * Time.deltaTime);
+        var newPos = Vector3.Slerp(currentPos, desiredPosition, Speed);
         newPos.z = -10;
         cameraTransform.position = newPos;
         
