@@ -10,6 +10,7 @@ namespace Birds
         private SpringController _springController;
         
         [SerializeField] private float _movementSpeed;
+        [SerializeField] private float _maxVelocity;
         
         private bool _springIsAttached;
 
@@ -32,6 +33,10 @@ namespace Birds
         private void MoveForward()
         {
             _rb.AddForce(_rb.transform.up * (_movementSpeed * Time.deltaTime));
+            if (!_springIsAttached && _rb.velocity.magnitude >= _maxVelocity)
+            {
+                _rb.velocity = _rb.velocity.normalized * _maxVelocity;
+            }
         }
     }
 }

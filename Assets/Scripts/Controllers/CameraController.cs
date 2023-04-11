@@ -5,31 +5,31 @@ using UnityEngine;
 public class CameraController : UnifyBehaviour
 {
     private CameraFollow _cameraFollow;
-    private Transform _bird;
+    private Transform _birdCameraTarget;
     private Transform _swingPoint;
 
     [Inject]
     public void Inject(
             CameraFollow cameraFollow, 
-            [InjectWithId(UnifyID.BirdCameraTarget)] Transform bird,
+            [InjectWithId(UnifyID.BirdCameraTarget)] Transform birdCameraTarget,
             [InjectWithId(UnifyID.SwingPoint)] Transform swingPoint
         )
     {
         _cameraFollow = cameraFollow;
-        _bird = bird;
+        _birdCameraTarget = birdCameraTarget;
         _swingPoint = swingPoint;
     }
 
     private void Start()
     {
-        _cameraFollow.SetTarget(_bird);
+        _cameraFollow.SetTarget(_birdCameraTarget);
     }
 
     private void Update()
     {
         if (Input.GetMouseButtonUp(0))
         {
-            _cameraFollow.SetTarget(_bird);
+            _cameraFollow.SetTarget(_birdCameraTarget);
         }
         if (Input.GetMouseButtonDown(0))
         {
